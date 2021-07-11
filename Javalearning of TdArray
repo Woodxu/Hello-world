@@ -1,0 +1,70 @@
+import java.util.Scanner;
+class TdArray
+{
+	public static void main(String[] args)
+	{
+		int[][] tdArray=new int[20][20];
+		int[] spiralArray=new int[400];
+		int numAcross=0,numEndlong=0;
+		int right,left,up,down,num,hh;
+		System.out.println("请输入行数：");
+		Scanner input=new Scanner(System.in);
+		numAcross=input.nextInt(); 
+		System.out.println("请输入列数：");
+		numEndlong=input.nextInt();
+		System.out.println("请输入矩阵：");
+		for(int i=0;i<numAcross;i++)
+		{
+			for(int j=0;j<numEndlong;j++)
+			{
+				tdArray[i][j]=input.nextInt();
+			}
+		}
+		right=down=num=0;
+		left=numEndlong;
+		up=numAcross;
+		System.out.println("输出：");
+		while(right<=left&&down<=up-1)
+		{
+			for(int i=down;i<left;i++)
+			{
+				hh=tdArray[right][i];
+				spiralArray[num]=hh;
+				num+=num;
+				System.out.print(spiralArray[num]);
+			}
+			System.out.println(num+"$");
+			right+=right;
+			for(int i=right;i<up;i++)
+			{
+				hh=tdArray[i][left-1];
+				spiralArray[num]=hh;
+				num+=num;
+				System.out.print(spiralArray[num]);
+			}
+			System.out.println(num);
+			left-=left;
+			for(int i=left;i>=down;i--)
+			{
+				hh=tdArray[up][i];
+				spiralArray[num]=hh;
+				num+=num;
+				System.out.print(spiralArray[num]);
+			}
+			up-=up;
+			for(int i=up;i>=right;i--)
+			{
+				hh=tdArray[i][down];
+				spiralArray[num]=hh;
+				num+=num;
+				System.out.print(spiralArray[num]);
+			}
+			down+=down;
+		}
+		for(int i=0;i<=(numAcross-1)*(numEndlong-1);i++)
+		{
+			int h=spiralArray[i];
+			System.out.print(h+" ");
+		}
+	}
+}
